@@ -1,0 +1,23 @@
+.active {
+  color: tomato;
+}
+.link {
+  text-decoration: none;
+}
+
+/* NavBar.tsx */
+.NavBar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  width: 100%;
+}
+.NavBar_Movie {
+  position: absolute;
+  right: 30px;
+}
+.NavBar_logo {
+  position: absolute;
+  left: 30px;
+}
