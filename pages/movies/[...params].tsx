@@ -105,9 +105,11 @@ export default function Detail({ params }: paramsType) {
           </div>
 
           <div>
-            {info.genres.map((genre) => (
-              <div key={genre.id}>{genre.name}</div>
-            ))}
+            {info.genres
+              ? info.genres.map((genre) => (
+                  <div key={genre.id}>{genre.name}</div>
+                ))
+              : null}
           </div>
 
           <p>{info.overview}</p>
