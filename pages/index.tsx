@@ -67,7 +67,7 @@ export default function Home({ results }: Props) {
 export async function getServerSideProps() {
   // 여기에 있는 코드들은 Server에 들어간다. results는 함수내의 정의된 변수 변경x
   const { results } = await (
-    await fetch(`https://next-js-react-movie.vercel.app//api/movies`)
+    await fetch(`https://next-js-react-movie.vercel.app/api/movies`)
   ).json();
 
   return {
