@@ -82,7 +82,7 @@ export default function Detail({ params }: paramsType) {
               target.src = defaultImage;
               target.classList.add("default-image");
             }}
-          ></img>
+          />
         </div>
 
         <div>
