@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "build": "next build && next export",
     "predeploy": "npm run build",
     "deploy": "touch out/.nojekyll && gh-pages -d out --dotfiles"
   },
@@ -27,6 +27,7 @@
   "homepage": "https://springhana.github.io/NextJS-React_Movie/",
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.6.0",
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "vercel": "^29.1.1"
   }
 }

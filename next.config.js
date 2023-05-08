@@ -6,7 +6,7 @@ const API_KEY = process.env.API_KEY;
 
 const nextConfig = {
   reactStrictMode: true,
-  basepath: "/NextJS-React-Movie",
+  basePath: "/NextJS-React-Movie",
   async redirect() {
     return [
       {
