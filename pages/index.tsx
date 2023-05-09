@@ -25,11 +25,9 @@ export default function Home() {
     const response = await (await fetch(`/api/movies`)).json();
     setMovie(response.results);
     setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
-    setMainPath(movie.map((movie) => movie.backdrop_path));
-    setMainTitle(movie.map((movie) => movie.original_title));
-    console.log(movie);
   }
-
+  setMainPath(movie.map((movie) => movie.backdrop_path));
+  setMainTitle(movie.map((movie) => movie.original_title));
   useEffect(() => {
     getDatas();
   }, [router]);
