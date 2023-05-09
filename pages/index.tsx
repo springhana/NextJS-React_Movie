@@ -39,7 +39,7 @@ export default function Home() {
       <Title title="Home" />
       <div>
         {movie.map((main) => (
-          <div>
+          <div key={main.id}>
             <img
               src={`https://image.tmdb.org/t/p/w780/${main.poster_path[random]}`}
               style={{ width: "780px", height: "440px" }}
