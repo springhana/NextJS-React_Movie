@@ -16,7 +16,6 @@ interface Movie {
 
 // Server에서 results를 갖고 옴 (next.config.js)
 export default function Home() {
-  const [random, setRandom] = useState(Math.floor(Math.random() * 19)); // 메인 영화 랜덤으로 보여주기 위한 것
   const router = useRouter(); // 주소 갖고오기
   const [movie, setMovie] = useState<Movie[]>([]);
   const [mainPath, setMainPath] = useState<string[]>([]);
@@ -43,11 +42,13 @@ export default function Home() {
       <Title title="Home" />
       <div>
         <img
-          src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
+          src={`https://image.tmdb.org/t/p/w780/${
+            mainPath[Math.floor(Math.random() * 19)]
+          }`}
           style={{ width: "780px", height: "440px" }}
           alt="mainPoster"
         />
-        <h1>{mainTitle[random]}</h1>
+        <h1>{mainTitle[Math.floor(Math.random() * 19)]}</h1>
       </div>
       {movie?.map((movies: Movie) => (
         <div
