@@ -6,17 +6,17 @@ export default function About() {
     <div>
       <Title title="About" />
       <div className="logos">
-        <Image
+        <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png"
           className="img_react"
           alt="react"
         />
-        <Image
+        <img
           src="https://cdn-icons-png.flaticon.com/512/748/748113.png"
           className="img_plus"
           alt="+"
         />
-        <Image
+        <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/800px-Nextjs-logo.svg.png"
           className="img_nextjs"
           alt="nextJs"

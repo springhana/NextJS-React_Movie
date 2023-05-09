@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
-import Image from "next/image";
 
 interface Movie {
   original_title: string;
@@ -20,24 +19,21 @@ export default function Home() {
   const [random, setRandom] = useState(0); // 메인 영화 랜덤으로 보여주기 위한 것
   const router = useRouter(); // 주소 갖고오기
   const [movie, setMovie] = useState<Movie[]>([]);
-
+  const [mainPath, setMainPath] = useState<string[]>([]);
+  const [mainTitle, setMainTitle] = useState<string[]>([]);
   async function getDatas() {
     const response = await (await fetch(`/api/movies`)).json();
     setMovie(response.results);
+    setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
+    setMainPath(movie.map((movie) => movie.backdrop_path));
+    setMainTitle(movie.map((movie) => movie.original_title));
   }
 
   useEffect(() => {
     getDatas();
-    setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
-  }, [getDatas]);
+  }, [router]);
 
   // 메인 영화
-  const [MainPath] = useState<string[]>(
-    movie.map((movie: Movie) => movie.backdrop_path)
-  );
-  const [MainTitle] = useState<string[]>(
-    movie.map((movie: Movie) => movie.original_title)
-  );
 
   // 영화 클릭 리스너
   const movieClick = (id: number, title: string) => {
@@ -47,12 +43,12 @@ export default function Home() {
     <div>
       <Title title="Home" />
       <div>
-        <Image
-          src={`https://image.tmdb.org/t/p/w780/${MainPath[random]}`}
+        <img
+          src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
           style={{ width: "780px", height: "440px" }}
           alt="mainPoster"
         />
-        <h1>{MainTitle[random]}</h1>
+        <h1>{mainTitle[random]}</h1>
       </div>
       {movie?.map((movies: Movie) => (
         <div
@@ -60,7 +56,7 @@ export default function Home() {
           onClick={() => movieClick(movies.id, movies.title)}
         >
           {/* https://image.tmdb.org/t/p/<이미지 크기>/<이미지 파일명> */}
-          <Image
+          <img
             src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
             alt="poster"
           />

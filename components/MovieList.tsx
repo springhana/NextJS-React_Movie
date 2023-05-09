@@ -52,7 +52,7 @@ export default function MovieList(props: PropsType) {
             onClick={() => onMovieClick(movie.id, movie.title)}
             key={movie.id}
           >
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               className="poster"
               alt="poster"

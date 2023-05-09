@@ -10,7 +10,6 @@ const nextConfig = {
     loader: "akamai",
     path: "/",
   },
-  basePath: "/NextJS-React-Movie",
   async redirect() {
     return [
       {

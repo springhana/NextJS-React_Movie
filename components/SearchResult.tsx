@@ -55,7 +55,7 @@ export default function SearchResult() {
               <div>
                 <div>
                   <div>
-                    <Image
+                    <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                       alt="poster"
                       onError={(
@@ -87,7 +87,7 @@ export default function SearchResult() {
                     </div>
                   </div>
                 </div>
-                <Image
+                <img
                   src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png"
                   className="arrow"
                   alt="arrow"

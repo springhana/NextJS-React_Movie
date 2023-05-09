@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import Title from "@/components/Title";
-import Image from "next/image";
 
 interface paramsType {
   params: string[];
@@ -59,7 +58,7 @@ export default function Detail() {
   // 영화 정보 받아오기
   const fetchMovieDetails = useCallback(async () => {
     const result = await (
-      await fetch(`https://next-js-react-movie.vercel.app/api/movies/id=${id}`)
+      await fetch(`https://next-js-react-movie.vercel.app//api/movies/${id}`)
     ).json();
     setInfo(result);
   }, [id]);
@@ -74,7 +73,7 @@ export default function Detail() {
       <div>
         <div>
           {/* 포스터 이미지 */}
-          <Image
+          <img
             src={`https://image.tmdb.org/t/p/w500/${info.poster_path}`}
             alt="poster"
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -87,7 +86,7 @@ export default function Detail() {
         </div>
 
         <div>
-          <Image
+          <img
             src={`https://image.tmdb.org/t/p/w500/${info.backdrop_path}`}
             alt="background"
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
