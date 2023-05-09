@@ -43,7 +43,7 @@ export default function Home() {
     <div>
       <Title title="Home" />
       <div>
-        {mainPath[random] === null ? (
+        {mainPath[random] !== null ? (
           <div>
             <img
               src={`https://image.tmdb.org/t/p/w780/${mainPath[0]}`}
