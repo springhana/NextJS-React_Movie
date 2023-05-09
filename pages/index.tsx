@@ -28,12 +28,12 @@ export default function Home() {
 
   useEffect(() => {
     getDatas();
-    setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
     setMainPath(movie.map((movie) => movie.backdrop_path));
     setMainTitle(movie.map((movie) => movie.original_title));
   }, [router]);
 
   // 메인 영화
+  setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
 
   // 영화 클릭 리스너
   const movieClick = (id: number, title: string) => {
