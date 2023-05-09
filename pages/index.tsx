@@ -29,6 +29,7 @@ export default function Home() {
     setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
     setMainPath(movie.map((movie) => movie.backdrop_path));
     setMainTitle(movie.map((movie) => movie.original_title));
+    console.log(movie);
   }
 
   useEffect(() => {
