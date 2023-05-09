@@ -21,6 +21,7 @@ export default function Home() {
   const [movie, setMovie] = useState<Movie[]>([]);
   const [mainPath, setMainPath] = useState<string[]>([]);
   const [mainTitle, setMainTitle] = useState<string[]>([]);
+  
   async function getDatas() {
     const response = await (await fetch(`/api/movies`)).json();
     setMovie(response.results);
