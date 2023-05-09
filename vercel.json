@@ -3,7 +3,7 @@
     { "source": "/(.*)", "destination": "/" },
     {
       "source": "/api/movies",
-      "destination": "https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}"
+      "destination": "https://api.themoviedb.org/3/movie/popular?api_key=d142de617e5278c39b18e71cd2144dd7"
     }
   ]
 }
