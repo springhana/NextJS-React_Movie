@@ -4,6 +4,7 @@ const API_KEY = process.env.API_KEY;
 
 const nextConfig = {
   reactStrictMode: true,
+  basePath: "/NextJS-React_Movie",
   images: {
     loader: "akamai",
     path: "/",
