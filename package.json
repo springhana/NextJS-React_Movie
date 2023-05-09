@@ -5,8 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "predeploy": "npm run build",
-    "depoly": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint"
   },
@@ -25,7 +23,6 @@
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   },
-  "homepage": "https://springhana.github.io/NextJS-React_Movie/",
   "devDependencies": {
     "eslint-plugin-react-hooks": "^4.6.0",
     "gh-pages": "^5.0.0",
