@@ -28,12 +28,12 @@ export default function Home() {
 
   useEffect(() => {
     getDatas();
+    setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
     setMainPath(movie.map((movie) => movie.backdrop_path));
     setMainTitle(movie.map((movie) => movie.original_title));
   }, [router]);
 
   // 메인 영화
-  setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
 
   // 영화 클릭 리스너
   const movieClick = (id: number, title: string) => {
@@ -43,12 +43,25 @@ export default function Home() {
     <div>
       <Title title="Home" />
       <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
-          style={{ width: "780px", height: "440px" }}
-          alt="mainPoster"
-        />
-        <h1>{mainTitle[random]}</h1>
+        {mainPath[random] === null ? (
+          <div>
+            <img
+              src={`https://image.tmdb.org/t/p/w780/${mainPath[0]}`}
+              style={{ width: "780px", height: "440px" }}
+              alt="mainPoster"
+            />
+            <h1>{mainTitle[0]}</h1>
+          </div>
+        ) : (
+          <div>
+            <img
+              src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
+              style={{ width: "780px", height: "440px" }}
+              alt="mainPoster"
+            />
+            <h1>{mainTitle[random]}</h1>
+          </div>
+        )}
       </div>
       {movie?.map((movies: Movie) => (
         <div
