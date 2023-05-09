@@ -49,9 +49,9 @@ const movie = {
 };
 
 // pages 폴더에서 movies폴더안에 [...id].tsx /params/movies/[...params].tsx
-export default function Detail({ params }: paramsType) {
+export default function Detail() {
   const router = useRouter();
-  const [title, id]: any = params || [];
+  const [title, id]: any = router.query.params || [];
   const [info, setInfo] = useState<movieType>(movie);
   const defaultImage =
     "https://cdn-icons-png.flaticon.com/512/8058/8058802.png";
@@ -171,10 +171,10 @@ export default function Detail({ params }: paramsType) {
     </div>
   );
 }
-export async function getServerSideProps({ params: { params } }: any) {
-  return {
-    props: {
-      params,
-    },
-  };
-}
+// export async function getServerSideProps({ params: { params } }: any) {
+//   return {
+//     props: {
+//       params,
+//     },
+//   };
+// }
