@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const { redirect } = require("next/dist/server/api-utils");
-
 const API_KEY = process.env.API_KEY;
 
 const nextConfig = {
