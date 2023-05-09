@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Title from "./Title";
 import Link from "next/link";
 import Pagination from "./Pagenation";
+import Image from "next/image";
 
 interface MoviesType {
   poster_path: string;
@@ -51,10 +52,11 @@ export default function MovieList(props: PropsType) {
             onClick={() => onMovieClick(movie.id, movie.title)}
             key={movie.id}
           >
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               className="poster"
-            ></img>
+              alt="poster"
+            />
             <Link
               href={`/movies/${movie.original_title}/${movie.id}`}
               key={movie.id}

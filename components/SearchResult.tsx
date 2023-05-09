@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Pagination from "./Pagenation";
+import Pagination from "@/components/Pagenation";
 import Link from "next/link";
+import Image from "next/image";
 
 interface resultsType {
   id: number;
@@ -54,8 +55,9 @@ export default function SearchResult() {
               <div>
                 <div>
                   <div>
-                    <img
+                    <Image
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                      alt="poster"
                       onError={(
                         e: React.SyntheticEvent<HTMLImageElement, Event>
                       ) => {
@@ -64,7 +66,7 @@ export default function SearchResult() {
                         target.src = defaultImage;
                         target.classList.add("default-image");
                       }}
-                    ></img>
+                    />
                   </div>
 
                   <div>
@@ -85,10 +87,11 @@ export default function SearchResult() {
                     </div>
                   </div>
                 </div>
-                <img
+                <Image
                   src="https://cdn-icons-png.flaticon.com/512/2989/2989988.png"
                   className="arrow"
-                ></img>
+                  alt="arrow"
+                />
               </div>
             </Link>
           );

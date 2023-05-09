@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Title from "../../components/Title";
+import { useCallback, useEffect, useState } from "react";
+import Title from "@/components/Title";
+import Image from "next/image";
 
 interface paramsType {
   params: string[];
@@ -56,16 +57,16 @@ export default function Detail({ params }: paramsType) {
     "https://cdn-icons-png.flaticon.com/512/8058/8058802.png";
 
   // 영화 정보 받아오기
-  const fetchMovieDetails = async () => {
+  const fetchMovieDetails = useCallback(async () => {
     const result = await (
-      await fetch(`https://next-js-react-movie.vercel.app/api/movies/${id}`)
+      await fetch(`https://next-js-react-movie.vercel.app/api/movies/id=${id}`)
     ).json();
     setInfo(result);
-    console.log(result);
-  };
+  }, [id]);
+
   useEffect(() => {
     fetchMovieDetails();
-  }, [router.query.params]);
+  }, [fetchMovieDetails]);
 
   return (
     <div>
@@ -73,7 +74,7 @@ export default function Detail({ params }: paramsType) {
       <div>
         <div>
           {/* 포스터 이미지 */}
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w500/${info.poster_path}`}
             alt="poster"
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -86,13 +87,14 @@ export default function Detail({ params }: paramsType) {
         </div>
 
         <div>
-          <img
+          <Image
             src={`https://image.tmdb.org/t/p/w500/${info.backdrop_path}`}
             alt="background"
-            onError={(e: any) => {
-              e.target.onerror = null;
-              e.target.src = defaultImage;
-              e.target.classList.add("default-image");
+            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+              const target = e.target as HTMLImageElement;
+              target.onerror = null;
+              target.src = defaultImage;
+              target.classList.add("default-image");
             }}
           />
         </div>

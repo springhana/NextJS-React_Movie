@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
+import Image from "next/image";
 
 interface Movie {
   original_title: string;
@@ -39,9 +40,10 @@ export default function Home({ results }: Props) {
     <div>
       <Title title="Home" />
       <div>
-        <img
+        <Image
           src={`https://image.tmdb.org/t/p/w780/${MainPath[random]}`}
           style={{ width: "780px", height: "440px" }}
+          alt="mainPoster"
         />
         <h1>{MainTitle[random]}</h1>
       </div>
@@ -51,7 +53,10 @@ export default function Home({ results }: Props) {
           onClick={() => movieClick(movies.id, movies.title)}
         >
           {/* https://image.tmdb.org/t/p/<이미지 크기>/<이미지 파일명> */}
-          <img src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`} />
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
+            alt="poster"
+          />
           <Link
             href={`/movies/${movies.original_title}/${movies.id}`}
             // as={`/movies/${movies.id}`}

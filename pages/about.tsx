@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Title from "../components/Title";
 
 export default function About() {
@@ -5,18 +6,21 @@ export default function About() {
     <div>
       <Title title="About" />
       <div className="logos">
-        <img
+        <Image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png"
           className="img_react"
-        ></img>
-        <img
+          alt="react"
+        />
+        <Image
           src="https://cdn-icons-png.flaticon.com/512/748/748113.png"
           className="img_plus"
-        ></img>
-        <img
+          alt="+"
+        />
+        <Image
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/800px-Nextjs-logo.svg.png"
           className="img_nextjs"
-        ></img>
+          alt="nextJs"
+        />
       </div>
       <div>
         <span>
