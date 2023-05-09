@@ -16,7 +16,7 @@ interface Movie {
 
 // Server에서 results를 갖고 옴 (next.config.js)
 export default function Home() {
-  const [random, setRandom] = useState(0); // 메인 영화 랜덤으로 보여주기 위한 것
+  const [random, setRandom] = useState(Math.floor(Math.random() * 19)); // 메인 영화 랜덤으로 보여주기 위한 것
   const router = useRouter(); // 주소 갖고오기
   const [movie, setMovie] = useState<Movie[]>([]);
   const [mainPath, setMainPath] = useState<string[]>([]);
@@ -28,7 +28,6 @@ export default function Home() {
 
   useEffect(() => {
     getDatas();
-    setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
     setMainPath(movie.map((movie) => movie.backdrop_path));
     setMainTitle(movie.map((movie) => movie.original_title));
   }, [router]);
@@ -43,25 +42,12 @@ export default function Home() {
     <div>
       <Title title="Home" />
       <div>
-        {mainPath[random] !== null ? (
-          <div>
-            <img
-              src={`https://image.tmdb.org/t/p/w780/${mainPath[0]}`}
-              style={{ width: "780px", height: "440px" }}
-              alt="mainPoster"
-            />
-            <h1>{mainTitle[0]}</h1>
-          </div>
-        ) : (
-          <div>
-            <img
-              src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
-              style={{ width: "780px", height: "440px" }}
-              alt="mainPoster"
-            />
-            <h1>{mainTitle[random]}</h1>
-          </div>
-        )}
+        <img
+          src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
+          style={{ width: "780px", height: "440px" }}
+          alt="mainPoster"
+        />
+        <h1>{mainTitle[random]}</h1>
       </div>
       {movie?.map((movies: Movie) => (
         <div
