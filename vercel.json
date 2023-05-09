@@ -7,6 +7,6 @@
         "Custom-Header": "value"
       }
     }
-  ]
+  ],
   "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
 }
