@@ -22,7 +22,9 @@ export default function Home() {
   const [mainPath, setMainPath] = useState<string[]>([]);
   const [mainTitle, setMainTitle] = useState<string[]>([]);
   async function getDatas() {
-    const response = await (await fetch(`/api/movies`)).json();
+    const response = await (
+      await fetch(`https://next-js-react-movie.vercel.app//api/movies`)
+    ).json();
     setMovie(response.results);
     setRandom(Math.floor(Math.random() * 19)); // 랜덤으로 뽑기
     setMainPath(movie.map((movie) => movie.backdrop_path));
