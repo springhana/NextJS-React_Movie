@@ -57,9 +57,7 @@ export default function Detail() {
 
   // 영화 정보 받아오기
   const fetchMovieDetails = useCallback(async () => {
-    const result = await (
-      await fetch(`https://next-js-react-movie.vercel.app//api/movies/${id}`)
-    ).json();
+    const result = await (await fetch(`/api/movies/${id}`)).json();
     setInfo(result);
   }, [id]);
 
