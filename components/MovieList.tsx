@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Title from "./Title";
 import Link from "next/link";
 import Pagination from "./Pagenation";
-import Image from "next/image";
 
 interface MoviesType {
   poster_path: string;

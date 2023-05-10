@@ -19,17 +19,18 @@ export default function Home() {
   const [random, setRandom] = useState(Math.floor(Math.random() * 19)); // 메인 영화 랜덤으로 보여주기 위한 것
   const router = useRouter(); // 주소 갖고오기
   const [movie, setMovie] = useState<Movie[]>([]);
-  const [mainPath, setMainPath] = useState<string[]>([]);
-  const [mainTitle, setMainTitle] = useState<string[]>([]);
+  const [mainPath, setMainPath] = useState<string>("");
+  const [mainTitle, setMainTitle] = useState<string>("");
   async function getDatas() {
     const response = await (await fetch(`/api/movies`)).json();
     setMovie(response.results);
+    console.log();
+    setMainPath(response.results[random].backdrop_path);
+    setMainTitle(response.results[random].original_title);
   }
 
   useEffect(() => {
     getDatas();
-    setMainPath(movie.map((movie) => movie.backdrop_path));
-    setMainTitle(movie.map((movie) => movie.original_title));
   }, [router]);
 
   // 메인 영화
@@ -43,11 +44,11 @@ export default function Home() {
       <Title title="Home" />
       <div>
         <img
-          src={`https://image.tmdb.org/t/p/w780/${mainPath[random]}`}
+          src={`https://image.tmdb.org/t/p/w780/${mainPath}`}
           style={{ width: "780px", height: "440px" }}
           alt="mainPoster"
         />
-        <h1>{mainTitle[random]}</h1>
+        <h1>{mainTitle}</h1>
       </div>
       {movie?.map((movies: Movie) => (
         <div
