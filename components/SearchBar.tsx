@@ -13,8 +13,8 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
-      <div className="search">
+    <div className="search">
+      <div className="search_inner">
         <input
           type="text"
           className="search__input"
@@ -44,14 +44,20 @@ export default function SearchBar() {
 
       <style jsx>{`
         .search {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .search_inner {
           position: absolute;
           display: flex;
           justify-content: center;
           align-items: center;
-          right: 100px;
+          right: 0;
+          margin-right: 400px;
           padding: 0 15px;
-          background: red;
-          border-radius: 30px;
+          background-color: hsl(2, 100%, 95%);
+          border-radius: 20px;
         }
         .search__button {
           position: relative;
@@ -71,9 +77,11 @@ export default function SearchBar() {
           transition: 0.5s ease-out;
           text-align: center;
           border-radius: 30px;
+          background: hsl(2, 100%, 98%);
+          border: none;
         }
         .search__input:focus {
-          width: 130px;
+          width: 200px;
         }
         .search__icon {
           height: 1.3em;

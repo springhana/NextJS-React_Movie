@@ -119,7 +119,7 @@ export default function Detail() {
           <div>
             <b>Rate</b>
             <span>
-              {info.vote_average ? info.vote_average.toFixed(1) : null}
+              {info.vote_average ? `${info.vote_average.toFixed(1)}⭐` : null}
             </span>
           </div>
 
