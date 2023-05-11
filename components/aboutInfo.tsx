@@ -44,4 +44,5 @@ const info: infoType[] = [
   },
 ];
 
+
 export default info;

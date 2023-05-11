@@ -50,7 +50,11 @@ export default function About() {
 
       <ul className="info">
         {info.map((info, index) => (
-          <div className="info_img_pic" onClick={() => imgMove(index)}>
+          <div
+            key={index}
+            className="info_img_pic"
+            onClick={() => imgMove(index)}
+          >
             <div className="info_img">
               <span className="info__title">{info.title}</span>
               <a
@@ -64,7 +68,7 @@ export default function About() {
             </div>
             <div className="info_inner">
               <li
-                key={info.title}
+                key={index}
                 className="info_contain"
                 ref={setRef(index)}
                 style={{
