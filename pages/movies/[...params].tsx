@@ -153,10 +153,8 @@ export default function Detail() {
               <div className="detail__genres">
                 {info.genres
                   ? info.genres.map((genre) => (
-                      <div className="detail__genres_inner">
-                        <div key={genre.id} className="detail__genres_genre">
-                          {genre.name}
-                        </div>
+                      <div key={genre.id} className="detail__genres_inner">
+                        <div className="detail__genres_genre">{genre.name}</div>
                         <div className="detail__genres_shape"></div>
                       </div>
                     ))
@@ -242,9 +240,7 @@ export default function Detail() {
                       next
                     </div>
                   </ul>
-                ) : (
-                  <li></li>
-                )}
+                ) : null}
               </div>
               {/*  */}
             </div>
