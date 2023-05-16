@@ -83,26 +83,25 @@ export default function Home() {
         <div className="loading">Loading...</div>
       ) : (
         <>
-          {" "}
-          <div className="mainMovie">
+          <div className="main_Movie">
             <img
               src={`https://image.tmdb.org/t/p/w780/${mainPath}`}
               alt="mainPoster"
-              style={{ width: "780px", height: "440px", scale: "1.2" }}
-              className="mainMovie_Pic"
+              className="main_Movie__Pic"
             />
-            <span className="mainMovie_PosterPic">
+            <span className="main_Movie__PosterPic">
               <img
                 src={`https://image.tmdb.org/t/p/w780/${mainPosterPath}`}
                 alt="mainPoster"
-                style={{ width: "250px", height: "375px" }}
+                className="main_Movie__poster"
               />
-              <div className="movie_rating_hover">
+              <div className="movie_rating__hover">
                 {mainRating ? mainRating.toFixed(1) : null}⭐
               </div>
             </span>
-            <h1 className="mainMovie_title">{mainTitle}</h1>
+            <h1 className="main_Movie__title">{mainTitle}</h1>
           </div>
+
           <div className="movies">
             {movie?.map((movies: Movie) => (
               <div
@@ -118,10 +117,10 @@ export default function Home() {
                 <span>
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
-                    style={{ width: "400px", height: "600px" }}
+                    className="movie__poster"
                     alt="poster"
                   />
-                  <div className="movie_rating_hover">
+                  <div className="movie_rating__hover">
                     {movies.vote_average
                       ? movies.vote_average.toFixed(1)
                       : null}
@@ -133,7 +132,7 @@ export default function Home() {
                   // as={`/movies/${movies.id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <h4 className="movie_title">
+                  <h4 className="movie__title">
                     {movies.original_title.length > 20
                       ? `${movies.original_title.slice(0, 20)}...`
                       : movies.original_title}
@@ -142,6 +141,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+
           {/* prev | next 버튼 */}
           <p className="controls">
             <span className="prev" onClick={btnPrev}>
@@ -160,10 +160,9 @@ export default function Home() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background: hsl(2, 100%, 97%);
+          background: hsl(2, 100%, 95%);
           overflow: hidden;
         }
-
         .loading {
           display: flex;
           justify-content: center;
@@ -173,15 +172,24 @@ export default function Home() {
           font-weight: bold;
           font-family: "DOSPilgiMedium";
         }
-
-        .mainMovie {
+         {
+          /* main Movie */
+        }
+        .main_Movie {
           margin: 160px 0 30px 0;
         }
-        .mainMovie_Pic {
+        .main_Movie__Pic {
           border: 3px solid black;
           border-radius: 10px;
+          width: 780px;
+          height: 440px;
+          scale: 1.2;
         }
-        .mainMovie_PosterPic {
+        .main_Movie__poster {
+          width: 250px;
+          height: 375px;
+        }
+        .main_Movie__PosterPic {
           position: absolute;
           border: 3px solid black;
           border-radius: 10px;
@@ -209,10 +217,35 @@ export default function Home() {
             margin-top: 50px;
           }
         }
-        .mainMovie_PosterPic:hover {
+        .main_Movie__PosterPic:hover {
           border-color: wheat;
         }
-        .movie_rating_hover {
+        .main_Movie__title {
+          position: relative;
+          background: none;
+          left: -50px;
+          color: wheat;
+        }
+         {
+          /* movies */
+        }
+        .movies {
+          position: relative;
+          display: flex;
+          align-items: center;
+          text-align: center;
+          width: 1200px;
+          background-color: hsl(2, 100%, 90%);
+          border: 3px solid black;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        .movie__poster {
+          width: 400px;
+          height: 600px;
+          margin: 0;
+        }
+        .movie_rating__hover {
           position: absolute;
           display: flex;
           justify-content: center;
@@ -226,28 +259,14 @@ export default function Home() {
           opacity: 0;
           transition: 0.5s ease-in-out;
         }
-        .movie_rating_hover:hover {
+        .movie_rating__hover:hover {
           opacity: 0.8;
         }
-        .mainMovie_title {
-          position: relative;
-          left: -50px;
-          color: wheat;
-        }
-
-        .movies {
-          position: relative;
-          display: flex;
-          align-items: center;
-          text-align: center;
-          width: 1200px;
-          background-color: hsl(2, 100%, 90%);
-          border: 3px solid black;
-          border-radius: 10px;
-          overflow: hidden;
-        }
-        .movie_title {
+        .movie__title {
           color: black;
+        }
+         {
+          /* controls */
         }
         .controls {
           text-align: center;
@@ -274,7 +293,9 @@ export default function Home() {
         .next {
           left: 200px;
         }
-
+         {
+          /* 솜 같은 배경 */
+        }
         .home__shape-small,
         .home__shape-mid,
         .home__shape-big {

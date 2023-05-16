@@ -74,13 +74,18 @@ export default function About() {
                 style={{
                   transition: "0.5s ease-in-out",
                   top: "0",
+                  zIndex: "11",
                 }}
               >
                 <span className="info_inner__title">{info.title}</span>
                 <img
                   src={`${info.img}`}
                   alt="image"
-                  style={{ width: "100px", height: "100px" }}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    background: "none",
+                  }}
                 />
               </li>
             </div>
@@ -97,7 +102,7 @@ export default function About() {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          background: hsl(2, 100%, 97%);
+          background: hsl(2, 100%, 95%);
           height: 100vh;
           overflow: hidden;
         }
@@ -145,6 +150,7 @@ export default function About() {
           font-size: 20px;
           font-weight: bold;
           color: #c8a2c8;
+          z-index: 10;
         }
         .info_img_pic {
           display: flex;
@@ -159,6 +165,7 @@ export default function About() {
           position: relative;
           width: 100%;
           opacity: 1;
+          background: none;
         }
         .info_contain {
           position: relative;
@@ -207,6 +214,7 @@ export default function About() {
           top: 0;
           margin-top: 30px;
           font-family: "DOSPilgiMedium";
+          background: none;
         }
 
         .home__shape-small,
