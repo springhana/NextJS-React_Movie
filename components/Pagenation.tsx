@@ -35,7 +35,7 @@ export default function Pagination(props: PropsType) {
   }, [currentPage, totalPage]);
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", display: "flex", listStyle: "none" }}>
       <ul>
         {firstPage === 1 ? (
           <li
