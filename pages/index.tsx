@@ -8,7 +8,7 @@ interface Movie {
   poster_path: string;
   backdrop_path: string;
   vote_average: number;
-  title: string;
+  title: string; 
   id: number;
 }
 

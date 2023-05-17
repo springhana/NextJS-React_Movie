@@ -4,27 +4,25 @@ import { useEffect, useState } from "react";
 interface PropsType {
   type: string;
   page: number;
-  totalPage: number | undefined;
+  totalPage: number;
 }
 
 export default function Pagination(props: PropsType) {
   const router = useRouter();
-  const [firstPage, setFirstPage] = useState(1);
+  const [firstPage, setFirstPage] = useState<number>(1);
   const [pages, setPages] = useState<number[]>([]);
-  const currentPage = props.page;
-  let totalPage = props.totalPage;
+  const currentPage: number = props.page;
+  const totalPage: number = props.totalPage;
 
   const onPageClick = (page: number) => {
     router.push(`/${props.type}/${page}`);
   };
 
   useEffect(() => {
-    if (totalPage === undefined) {
-      totalPage = 0;
-    }
-
-    const firstPage = ((currentPage - 1) / 5) * 5 + 1;
+    const firstPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
+    console.log(firstPage);
     let pagesArr = [];
+
     for (let i = 0; i < 5; i++) {
       if (firstPage + i <= totalPage) {
         pagesArr.push(firstPage + i);
@@ -35,9 +33,11 @@ export default function Pagination(props: PropsType) {
   }, [currentPage, totalPage]);
 
   return (
-    <div style={{ textAlign: "center", display: "flex", listStyle: "none" }}>
-      <ul>
+    <div className="pagenation">
+      <ul className="pages__Btn">
         {firstPage === 1 ? (
+          <li>prev</li>
+        ) : (
           <li
             onClick={() => {
               onPageClick(firstPage - 5);
@@ -45,10 +45,9 @@ export default function Pagination(props: PropsType) {
           >
             prev
           </li>
-        ) : (
-          <li>prev</li>
         )}
       </ul>
+
       {pages.map((page) => {
         return (
           <li
@@ -61,8 +60,10 @@ export default function Pagination(props: PropsType) {
           </li>
         );
       })}
+
       {pages.length === 5 ? (
         <li
+          className="pages__Btn"
           onClick={() => {
             onPageClick(firstPage + 5);
           }}
@@ -70,6 +71,22 @@ export default function Pagination(props: PropsType) {
           next
         </li>
       ) : null}
+
+      <style jsx>{`
+        .pagenation {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          list-style: none;
+          textalign: center;
+          gap: 30px;
+          cursor: pointer;
+        }
+        .pages__Btn {
+          list-style: none;
+        }
+      `}</style>
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function MovieList(props: PropsType) {
   const currentPage =
     router.query.page == null ? 1 : parseInt(router.query.page[0]);
   const [movies, setMovies] = useState<MoviesType[]>();
-  const [totalPage, setTotalPage] = useState<number | undefined>();
+  const [totalPage, setTotalPage] = useState<number>(1);
 
   async function pagination() {
     const newResults = await (
@@ -72,6 +72,7 @@ export default function MovieList(props: PropsType) {
           <div>Loading</div>
         )}
       </div>
+
       <Pagination type={props.type} page={currentPage} totalPage={totalPage} />
 
       <style jsx>{`
