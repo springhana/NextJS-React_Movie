@@ -39,11 +39,11 @@ export default function SearchResult() {
   }, [router.query.keyword, keyword, page]);
 
   return (
-    <div>
+    <div className="SearchResult">
       <div>
         Search Results for <b>{keyword}</b>
       </div>
-
+      <div></div>
       {results.length !== 0 ? (
         results.map((movie) => {
           return (
@@ -52,12 +52,13 @@ export default function SearchResult() {
               key={movie.id}
               legacyBehavior
             >
-              <div>
-                <div>
+              <div className="SearchResult__contain">
+                <div className="SearchResult__info">
                   <div>
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                       alt="poster"
+                      className="SearchResult__img"
                       onError={(
                         e: React.SyntheticEvent<HTMLImageElement, Event>
                       ) => {
@@ -69,21 +70,28 @@ export default function SearchResult() {
                     />
                   </div>
 
-                  <div>
-                    <div>
-                      {movie.original_title}
+                  <div className="SearchResult__title">
+                    <div style={{ background: "wheat" }}>
+                      {movie.original_title.length >= 100
+                        ? movie.original_title
+                        : `${movie.original_title.slice(0, 100)}...`}
                       <br />
                       <span>
-                        {movie.original_title !== movie.title
-                          ? movie.title
-                          : null}
+                        {movie.original_title !== movie.title ? (
+                          <div style={{ background: "wheat" }}>
+                            (
+                            {movie.title.length >= 100
+                              ? movie.title
+                              : `${movie.title.slice(0, 50)}...`}
+                            )
+                          </div>
+                        ) : null}
                       </span>
-                    </div>
-
-                    <div>
-                      {movie.release_date
-                        ? movie.release_date.split("-")[0]
-                        : null}
+                      <div style={{ background: "wheat" }}>
+                        {movie.release_date
+                          ? movie.release_date.split("-")[0]
+                          : null}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -100,13 +108,77 @@ export default function SearchResult() {
         <div>No Search Results Found.</div>
       )}
 
-      {results.length != 0 ? (
-        <Pagination
-          type={`search/${keyword}`}
-          page={parseInt(page)}
-          totalPage={totalPage}
-        />
-      ) : null}
+      <div className="SearchResult__page">
+        {results.length != 0 ? (
+          <Pagination
+            type={`search/${keyword}`}
+            page={parseInt(page)}
+            totalPage={totalPage}
+          />
+        ) : null}
+      </div>
+
+      <style jsx>{`
+        .arrow {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          right: 0;
+          margin: 30px;
+          background: none;
+          transition: 0.5s ease-in-out;
+        }
+
+        .SearchResult {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          top: 150px;
+          width: 100%;
+        }
+        .SearchResult__contain {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 10px;
+          width: 1000px;
+          height: 250px;
+          overflow: hidden;
+          border: 5px solid rgb(255, 248, 248);
+          background: wheat;
+          border-radius: 10px;
+          transition: 0.5s ease-in-out;
+        }
+        .SearchResult__contain:hover {
+          border-color: black;
+        }
+        .SearchResult__contain:hover .arrow {
+          right: -20px;
+        }
+        .SearchResult__info {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .SearchResult__img {
+          position: absolute;
+          width: 150px;
+          height: 200px;
+          left: 50px;
+          top: 25px;
+        }
+        .SearchResult__title {
+          text-align: center;
+          width: 500px;
+          overflow: hidden;
+        }
+        .SearchResult__page {
+          padding: 30px;
+        }
+      `}</style>
     </div>
   );
 }
