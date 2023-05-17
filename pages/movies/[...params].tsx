@@ -388,7 +388,7 @@ export default function Detail() {
           width: 100%;
           height: 10px;
           z-index: -1;
-          filter: blur(5px);
+          filter: blur(1px);
         }
         .detail_Companies_btn {
           position: relative;

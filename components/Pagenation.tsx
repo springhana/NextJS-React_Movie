@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface PropsType {
   type: string;
@@ -34,14 +34,17 @@ export default function Pagination(props: PropsType) {
 
   return (
     <div className="pagenation">
-      <ul className="pages__Btn">
+      <ul>
         {firstPage === 1 ? (
-          <li>prev</li>
+          <li className="pages__Btn" style={{ opacity: "0.5" }}>
+            prev
+          </li>
         ) : (
           <li
             onClick={() => {
               onPageClick(firstPage - 5);
             }}
+            className="pages__Btn"
           >
             prev
           </li>
@@ -56,7 +59,7 @@ export default function Pagination(props: PropsType) {
               onPageClick(page);
             }}
           >
-            <div>{page}</div>
+            <div className="Pagenation__page">{page}</div>
           </li>
         );
       })}
@@ -70,7 +73,11 @@ export default function Pagination(props: PropsType) {
         >
           next
         </li>
-      ) : null}
+      ) : (
+        <li className="pages__Btn" style={{ opacity: "0.5" }}>
+          next
+        </li>
+      )}
 
       <style jsx>{`
         .pagenation {
@@ -80,11 +87,24 @@ export default function Pagination(props: PropsType) {
           align-items: center;
           list-style: none;
           textalign: center;
-          gap: 30px;
+          gap: 50px;
           cursor: pointer;
         }
         .pages__Btn {
           list-style: none;
+        }
+        .Pagenation__page {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          transition: 0.2s ease-in-out;
+        }
+        .Pagenation__page:hover {
+          border-radius: 50%;
+          background-color: white;
         }
       `}</style>
     </div>
