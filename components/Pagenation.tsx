@@ -20,7 +20,7 @@ export default function Pagination(props: PropsType) {
 
   useEffect(() => {
     const firstPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
-    console.log(firstPage);
+    // console.log(firstPage);
     let pagesArr = [];
 
     for (let i = 0; i < 5; i++) {
@@ -59,7 +59,15 @@ export default function Pagination(props: PropsType) {
               onPageClick(page);
             }}
           >
-            <div className="Pagenation__page">{page}</div>
+            <div
+              className={
+                currentPage == page
+                  ? "Pagenation__pageCheck"
+                  : "Pagenation__page"
+              }
+            >
+              {page}
+            </div>
           </li>
         );
       })}
@@ -93,7 +101,8 @@ export default function Pagination(props: PropsType) {
         .pages__Btn {
           list-style: none;
         }
-        .Pagenation__page {
+        .Pagenation__page,
+        .Pagenation__pageCheck {
           width: 30px;
           height: 30px;
           display: flex;
@@ -102,9 +111,18 @@ export default function Pagination(props: PropsType) {
           border-radius: 50%;
           transition: 0.2s ease-in-out;
         }
-        .Pagenation__page:hover {
+
+        .Pagenation__page:hover,
+        .Pagenation__pageCheck:hover {
+          position: relative;
           border-radius: 50%;
-          background-color: white;
+          background-color: tomato;
+          color: white;
+        }
+        .Pagenation__pageCheck {
+          border-radius: 50%;
+          background-color: rgb(213, 45, 15);
+          color: white;
         }
       `}</style>
     </div>
