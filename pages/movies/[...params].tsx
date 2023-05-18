@@ -415,7 +415,8 @@ export default function Detail() {
           z-index: 100;
           bottom: 40px;
           padding: 5px;
-          background-color: white;
+          background-color: tomato;
+          color: white;
           border-radius: 5px;
           cursor: pointer;
         }
