@@ -58,7 +58,7 @@ export default function Detail() {
   const indexs: any = useRef(0);
   const [title, id]: any = router.query.params || [];
   const [info, setInfo] = useState<movieType>(movie);
-
+  const [tagline, setTagline] = useState<boolean>(info.tagline.length >= 70);
   // 디폴트 이미지
   const defaultImage =
     "https://cdn-icons-png.flaticon.com/512/8058/8058802.png";
@@ -77,6 +77,10 @@ export default function Detail() {
   useEffect(() => {
     fetchMovieDetails();
     prev.current.style.opacity = "0.5";
+    if (info.production_companies.length === 1) {
+      prev.current.style.opacity = "0.5";
+      next.current.style.opacity = "0.5";
+    }
   }, [fetchMovieDetails]);
 
   // 장르 Next | Prev 버튼 (투명화도 포함)
@@ -95,6 +99,7 @@ export default function Detail() {
       console.log(indexs.current);
     }
   };
+
   const companiesMovePrev = (index: any) => {
     if (1 <= index) {
       next.current.style.opacity = "1";
@@ -108,6 +113,9 @@ export default function Detail() {
     } else {
       ref.current = index;
     }
+  };
+  const taglineAll = () => {
+    setTagline(!tagline);
   };
 
   return (
@@ -147,7 +155,17 @@ export default function Detail() {
 
               <div className="detail__title">
                 {info.original_title}
-                <p>({info.tagline})</p>
+                <p
+                  className="detail__tagline"
+                  onClick={taglineAll}
+                  style={
+                    info.tagline.length >= 80
+                      ? { cursor: "pointer" }
+                      : { cursor: "none" }
+                  }
+                >
+                  ({tagline ? info.tagline : `${info.tagline.slice(0, 70)}...`})
+                </p>
               </div>
 
               <div className="detail__genres">
@@ -213,7 +231,7 @@ export default function Detail() {
                           position: "absolute",
                           zIndex: `${info.production_companies.length - index}`,
                           transition: ".5s ease-in-out",
-                          width: "100%",
+                          width: "400px",
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
@@ -312,8 +330,10 @@ export default function Detail() {
           color: black;
           font-weight: bold;
           font-size: 30px;
+          background: none;
         }
-        .detail__title p {
+        .detail__tagline {
+          background: none;
           color: gray;
         }
         .detail__genres {
@@ -393,6 +413,10 @@ export default function Detail() {
         .detail_Companies_btn {
           position: relative;
           z-index: 100;
+          bottom: 40px;
+          padding: 5px;
+          background-color: white;
+          border-radius: 5px;
           cursor: pointer;
         }
 
