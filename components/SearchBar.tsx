@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 
 export default function SearchBar() {
-  const [inputValue, setInputValue] = useState<string>("");
   const router = useRouter();
+  const [inputValue, setInputValue] = useState<string>(""); // 검색 input value 담을 문자열
+  // enter 누를 시
   const onSearchClick = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && inputValue !== "") {
       router.push(`/search/${inputValue}/1`);

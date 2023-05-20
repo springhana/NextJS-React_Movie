@@ -19,10 +19,11 @@ interface PropsType {
 export default function MovieList(props: PropsType) {
   const router = useRouter(); // url 받아오기
   const currentPage =
-    router.query.page == null ? 1 : parseInt(router.query.page[0]);
-  const [movies, setMovies] = useState<MoviesType[]>();
-  const [totalPage, setTotalPage] = useState<number>(1);
+    router.query.page == null ? 1 : parseInt(router.query.page[0]); // url에서 받아온 영화 종류
+  const [movies, setMovies] = useState<MoviesType[]>(); // 영화들을 담을 정보
+  const [totalPage, setTotalPage] = useState<number>(1); // 총 영화 갯 수
 
+  // 영화를 받아오기 위한 메서드
   async function pagination() {
     const newResults = await (
       await fetch(`/api/movies/${props.type}/page=${currentPage}`)
@@ -34,6 +35,7 @@ export default function MovieList(props: PropsType) {
     pagination();
   }, [currentPage]);
 
+  // 영화 클릭 시
   const onMovieClick = (id: number, title: string) => {
     router.push(`/movies/${title}/${id}`);
   };

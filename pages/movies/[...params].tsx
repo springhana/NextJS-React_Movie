@@ -51,13 +51,13 @@ const movie = {
 // pages 폴더에서 movies폴더안에 [...id].tsx /params/movies/[...params].tsx
 export default function Detail() {
   const router = useRouter();
-  const refs: any = useRef([]);
-  const prev: any = useRef("");
-  const next: any = useRef("");
-  const ref: any = useRef(0);
-  const indexs: any = useRef(0);
-  const [title, id]: any = router.query.params || [];
-  const [info, setInfo] = useState<movieType>(movie);
+  const refs: any = useRef([]); // detail__Companies의 refs
+  const prev: any = useRef(""); // prev style을 위한 ref
+  const next: any = useRef(""); // next style을 위한 ref
+  const ref: any = useRef(0); // next | prev 버튼을 유지하기 위해 만든 ref
+  const indexs: any = useRef(0); // next | prev 버튼을 유지하기 위해 만든 indexs
+  const [title, id]: any = router.query.params || []; // url에서 받아온 title, id
+  const [info, setInfo] = useState<movieType>(movie); // id로 검색해서 받아온 영화 정보들
   // 디폴트 이미지
   const defaultImage =
     "https://cdn-icons-png.flaticon.com/512/8058/8058802.png";
@@ -75,9 +75,9 @@ export default function Detail() {
 
   useEffect(() => {
     fetchMovieDetails();
-  }, [info]);
+  }, [info, router]);
 
-  // 장르 Next | Prev 버튼 (투명화도 포함)
+  // 장르 Next 버튼 (투명화도 포함)
   const companiesMoveNext = (index: any) => {
     if (info.production_companies.length - 1 > index) {
       prev.current.style.opacity = "1";
@@ -93,7 +93,7 @@ export default function Detail() {
       console.log(indexs.current);
     }
   };
-
+  // 장르 Prev 버튼 (투명화도 포함)
   const companiesMovePrev = (index: any) => {
     if (1 <= index) {
       next.current.style.opacity = "1";
@@ -228,6 +228,7 @@ export default function Detail() {
                       className="detail_Companies_btn"
                       onClick={() => companiesMovePrev(indexs.current)}
                       ref={prev}
+                      style={{ opacity: "0.5" }}
                     >
                       prev
                     </div>
@@ -241,7 +242,6 @@ export default function Detail() {
                   </ul>
                 ) : null}
               </div>
-              {/*  */}
             </div>
           </div>
 

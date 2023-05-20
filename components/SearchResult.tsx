@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Pagination from "@/components/Pagenation";
 import Link from "next/link";
-import Image from "next/image";
 
+// results type
 interface resultsType {
   id: number;
   original_title: string;
@@ -14,14 +14,15 @@ interface resultsType {
 
 export default function SearchResult() {
   const router = useRouter();
-  const [keyword, setKeyword] = useState<string>("");
-  const [totalPage, setTotalPage] = useState<number>(0);
-  const [page, setPage] = useState<string>("");
-  const [results, setResults] = useState<resultsType[]>([]);
+  const [keyword, setKeyword] = useState<string>(""); // url에서 얻어온 검색 키워드
+  const [page, setPage] = useState<string>(""); // url에서 얻어온 page를 담을 것
+  const [totalPage, setTotalPage] = useState<number>(0); // 검색한 영화 갯수
+  const [results, setResults] = useState<resultsType[]>([]); // 검색 결과 영화들
   // 이미지가 존재하지 않으면 사용할 이미지
   const defaultImage =
     "https://cdn-icons-png.flaticon.com/512/8058/8058802.png";
 
+  // 검색 결과 영화 정보를 받기위한 메서드
   async function pagination() {
     const ref = await (
       await fetch(`/api/search/keyword=${keyword}/page=${page}`)

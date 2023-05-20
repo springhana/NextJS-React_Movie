@@ -6,6 +6,7 @@ interface infoType {
   contain: string;
 }
 
+// About page에 들어가는 정보들
 const info: infoType[] = [
   {
     ref: "ref1",
@@ -43,6 +44,5 @@ const info: infoType[] = [
     contain: "springhana/NextJS-React_Movie",
   },
 ];
-
 
 export default info;

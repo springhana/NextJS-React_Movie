@@ -1,12 +1,15 @@
 import Title from "@/components/Title";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import info from "@/components/aboutInfo";
 
 export default function About() {
   const refs: any = useRef([]);
+  // refs 배열에 각각의 ref를 담기위한 메서드
   const setRef = (index: any) => (element: any) => {
     refs.current[index] = element; // 각 요소에 대한 참조 할당
   };
+
+  // 카드 밑으로 내리기 또는 올리기 위한 메서드
   const imgMove = (index: any) => {
     const currentRef = refs.current[index];
     if (currentRef.style.top === "240px") {

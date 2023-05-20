@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import Title from "../components/Title";
 
+// movie type
 interface Movie {
   original_title: string;
   poster_path: string;
   backdrop_path: string;
   vote_average: number;
-  title: string; 
+  title: string;
   id: number;
 }
 
@@ -16,7 +17,7 @@ export default function Home() {
   const router = useRouter(); // 주소 갖고오기
   const [random] = useState(Math.floor(Math.random() * 19)); // 메인 영화 랜덤으로 보여주기 위한 것
   const [movie, setMovie] = useState<Movie[]>([]); // API로 불러온 영화 담을 배열
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true); // 로딩
 
   // 메인 영화 정보들
   const [mainPath, setMainPath] = useState<string>("");
@@ -30,6 +31,7 @@ export default function Home() {
   const slideCount: number = 20;
   const [lef, setLef] = useState<number>(left.current);
 
+  // 홈 화면 영화들 슬라이드 메서드
   function moveSlide(num: number) {
     left.current = -num * 400;
     setLef(left.current);
@@ -55,6 +57,7 @@ export default function Home() {
     const response = await (await fetch(`/api/movies`)).json();
     setMovie(response.results);
     setLoading(false);
+
     // 메인 영화 정보들
     setMainPath(response.results[random].backdrop_path);
     setMainTitle(response.results[random].original_title);

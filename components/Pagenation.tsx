@@ -9,21 +9,25 @@ interface PropsType {
 
 export default function Pagination(props: PropsType) {
   const router = useRouter();
-  const [firstPage, setFirstPage] = useState<number>(1);
-  const [pages, setPages] = useState<number[]>([]);
-  const currentPage: number = props.page;
-  const totalPage: number = props.totalPage;
+  const [firstPage, setFirstPage] = useState<number>(1); // 처음 페이지 (초기값 1)
+  const [pages, setPages] = useState<number[]>([]); // 페이지를 보여줄 배열 [1,2,3,4,5]
+  const currentPage: number = props.page; // 받아온 현재 페이지
+  const totalPage: number = props.totalPage; // 받아온 총 페이지
 
+  // next | prev | page(숫자) 선택 시
   const onPageClick = (page: number) => {
     router.push(`/${props.type}/${page}`);
   };
 
   useEffect(() => {
+    // 처음 페이지 (5 => 1 이 되어야함 7 => 6)
     const firstPage = Math.floor((currentPage - 1) / 5) * 5 + 1;
     // console.log(firstPage);
-    let pagesArr = [];
+    let pagesArr = []; // 페이지를 담을 배열
 
+    // 페이지 담기 5개 씩
     for (let i = 0; i < 5; i++) {
+      // 페이지가 총 페이지보다 작으면
       if (firstPage + i <= totalPage) {
         pagesArr.push(firstPage + i);
       }
