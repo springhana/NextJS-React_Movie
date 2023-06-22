@@ -1,6 +1,5 @@
 ## mext로 이동
-
-<a href="https://next-js-react-movie-2dbkz9kh2-springhana.vercel.app/">mext</a>
+<a href="https://next-js-react-movie-2dbkz9kh2-springhana.vercel.app/">mext로 이동</a>
 
 # 정보 페이지
 
