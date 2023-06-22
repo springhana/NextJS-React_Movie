@@ -1,13 +1,13 @@
 ## mext로 이동
 
-<a src="https://next-js-react-movie-2dbkz9kh2-springhana.vercel.app/">mext</a>
+<a href="https://next-js-react-movie-2dbkz9kh2-springhana.vercel.app/">mext</a>
 
 # 정보 페이지
 
-※ <a src="https://nomadcoders.co/nextjs-fundamentals">노마드 코더의 Next.js 강의를 듣고 만든 React + Next.js 프로젝트 입니다.</a></br>
-※ 사용한 API : <a src="https://developer.themoviedb.org/docs">The Movie Database</a></br>
-※ 사용한 ICon : <a src="https://www.flaticon.com/">flaticon</a></br>
-※ 사용한 Font : <a src="https://github.com/hurss/fonts">hurss/fonts</a></br>
+※ <a href="https://nomadcoders.co/nextjs-fundamentals">노마드 코더의 Next.js 강의를 듣고 만든 React + Next.js 프로젝트 입니다.</a></br>
+※ 사용한 API : <a href="https://developer.themoviedb.org/docs">The Movie Database</a></br>
+※ 사용한 ICon : <a href="https://www.flaticon.com/">flaticon</a></br>
+※ 사용한 Font : <a href="https://github.com/hurss/fonts">hurss/fonts</a></br>
 
 ![image](https://github.com/springhana/NextJS-React_Movie/assets/97121074/5314a2cb-fd32-4312-bbe2-1a26b3286a0e)
 
